@@ -1,8 +1,10 @@
+.container {
+  margin: 4rem;
+}
 table {
   width: 1000px;
   table-layout: fixed;
-  color: #c1c5c6;
-  /* margin: 0 auto; */
+  color: var(--main-table);
 }
 th {
   font-weight: 300;
@@ -11,7 +13,6 @@ th {
   text-align: left;
   height: 50px;
   cursor: pointer;
-  position: relative;
 }
 
 td {
@@ -19,13 +20,23 @@ td {
 }
 
 tfoot {
-  color: #515457;
+  color: var(--darkest);
 }
 
 i {
   visibility: hidden;
   color: crimson;
   margin-left: -15px;
+}
+
+.active {
+  color: var(--active);
+  font-weight: bold;
+}
+
+.active i {
+  visibility: visible;
+  margin-left: 0px;
 }
 
 .table__body-name {
@@ -36,19 +47,10 @@ i {
 .table__body-directContractors {
   margin-bottom: 2rem;
 }
+
 .title {
   font-weight: 200;
-  color: #696c6f;
-}
-
-.active {
-  color: #7e90a1;
-  font-weight: bold;
-}
-
-.active i {
-  visibility: visible;
-  margin-left: 0px;
+  color: var(--dark);
 }
 
 /* little hack for making collapse the right borders in the table */
@@ -60,4 +62,37 @@ table,
 
 table {
   border: none;
+}
+
+/* utility classes */
+
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.thin {
+  font-weight: 300;
+}
+
+.xl {
+  font-size: 1.5rem;
+}
+
+.dark {
+  color: var(--dark);
+}
+
+.space {
+  height: 30px;
+}
+
+.pr-20 {
+  padding-right: 20px;
 }
