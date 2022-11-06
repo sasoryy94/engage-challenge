@@ -1,0 +1,115 @@
+<h1 class="title">Labour cost report</h1>
+<table>
+  <thead>
+    <tr>
+      <th (click)="setOrder('name')">
+        PAYROLL <br />
+        PROVIDER
+      </th>
+      <th class="center" (click)="setOrder('workerCount')">
+        WORKER <br />
+        &nbsp;
+      </th>
+      <th>
+        COMPLIANCE <br />
+        SCORE
+      </th>
+      <th class="right" style="width: 150px">
+        GROSS <br />
+        PAY ()
+      </th>
+      <th class="right" style="width: 100px">
+        PAYROLL <br />
+        ADMIN()
+      </th>
+      <th class="right pr-20" style="width: 150px">
+        LABOUR <br />
+        COST ()
+      </th>
+      <th class="center">WORK-<br />FOCE</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="contractor">
+    <tr *ngFor="let contractor of directContractors">
+      <td class="table__body-name">{{ contractor.name }}</td>
+      <td class="center xl">{{ contractor.workerCount }}</td>
+      <td
+        class="bold rightBorder"
+        *ngIf="contractor?.complianceStats; else elseComplianceStats"
+      >
+        {{ contractor.complianceStats }}
+      </td>
+      <ng-template #elseComplianceStats>
+        <td class="bold rightBorder">0%</td>
+      </ng-template>
+      <td class="xl dark right">
+        {{ contractor.grossPayTotal | number: "4.0-0" }}
+      </td>
+      <td *ngIf="contractor.payrollAdminTotal > 0; else elsePayrollAdmin">
+        {{ contractor.payrollAdminTotal }}
+      </td>
+      <ng-template #elsePayrollAdmin>
+        <td class="right">-</td>
+      </ng-template>
+      <td class="xl right rightBorder pr-20">
+        {{ contractor.labourCostTotal | number: "4.0-0" }}
+      </td>
+      <td class="center bold">{{ getWorkforce(contractor.workerCount) }}%</td>
+    </tr>
+  </tbody>
+  <div class="space"></div>
+  <tbody>
+    <tr
+      *ngFor="
+        let provider of providers | orderBy: order:reverse:caseInsensitive
+      "
+    >
+      <td class="table__body-name">{{ provider.name }}</td>
+      <td class="center xl">{{ provider.workerCount }}</td>
+      <td
+        class="bold rightBorder"
+        *ngIf="provider?.complianceStats?.Total; else elseComplianceStats"
+      >
+        {{ provider.complianceStats!.Total | number: "1.0-0" }}%
+      </td>
+      <ng-template #elseComplianceStats>
+        <td class="bold rightBorder">0%</td>
+      </ng-template>
+      <td class="xl dark right">
+        {{ provider.grossPayTotal | number: "4.0-0" }}
+      </td>
+      <td *ngIf="provider.payrollAdminTotal > 0; else elseProviders">
+        {{ provider.payrollAdminTotal }}
+      </td>
+      <ng-template #elseProviders>
+        <td class="right">-</td>
+      </ng-template>
+      <td class="xl right rightBorder pr-20">
+        {{ provider.labourCostTotal | number: "4.0-0" }}
+      </td>
+      <td class="center bold">{{ getWorkforce(provider.workerCount) }}%</td>
+    </tr>
+  </tbody>
+  <div class="space"></div>
+  <tfoot class="">
+    <tr *ngFor="let t of total">
+      <td class="right">{{ t.name | uppercase }}</td>
+      <td class="center xl">{{ t.workerCount }}</td>
+      <td class="bold rightBorder">
+        {{ t.complianceStats!.Total | number: "1.0-0" }}%
+      </td>
+      <td class="right xl">{{ t.grossPayTotal | number: "4.0-0" }}</td>
+      <td class="right" *ngIf="t.payrollAdminTotal > 0; else elseTotal">
+        {{ t.payrollAdminTotal }}
+      </td>
+      <ng-template #elseTotal>
+        <td class="right">-</td>
+      </ng-template>
+      <td class="xl right rightBorder pr-20">
+        {{ t.labourCostTotal | number: "4.0-0" }}
+      </td>
+      <!-- should come from backend ? -->
+      <td class="center bold">100.0%</td>
+    </tr>
+  </tfoot>
+</table>

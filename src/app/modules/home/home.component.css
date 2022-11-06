@@ -1,0 +1,76 @@
+table {
+  width: 1000px;
+  table-layout: fixed;
+  color: #c1c5c6;
+  /* margin: 0 auto; */
+}
+th {
+  font-weight: 300;
+  font-size: 0.75rem;
+  padding-bottom: 1rem;
+  text-align: left;
+  height: 50px;
+}
+
+td {
+  height: 50px;
+}
+
+tfoot {
+  color: #515457;
+}
+
+.table__body-name {
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+.table__body-directContractors {
+  margin-bottom: 2rem;
+}
+.title {
+  font-weight: 300;
+  color: #696c6f;
+}
+
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.thin {
+  font-weight: 300;
+}
+
+.xl {
+  font-size: 1.5rem;
+}
+
+.dark {
+  color: #98999b;
+}
+
+.space {
+  height: 30px;
+}
+
+.pr-20 {
+  padding-right: 20px;
+}
+
+/* little hack for making collapse the right borders in the table */
+table,
+.rightBorder {
+  border-right: 1px solid #e6eaec;
+  border-collapse: collapse;
+}
+
+table {
+  border: none;
+}
