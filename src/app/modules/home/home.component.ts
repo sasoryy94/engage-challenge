@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
         this.providers = data.providers;
         this.total = data.total;
       });
+      console.log(this.providers);
     });
   }
 
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
     return workerpercentaje.toFixed(1);
   }
 
-  setOrder(value: string) {
+  setOrder(value: string = '0') {
     if (this.order === value) {
       this.reverse = !this.reverse;
     }

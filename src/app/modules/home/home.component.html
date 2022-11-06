@@ -2,31 +2,68 @@
 <table>
   <thead>
     <tr>
-      <th (click)="setOrder('name')">
+      <th [class.active]="order === 'name'" (click)="setOrder('name')">
         PAYROLL <br />
         PROVIDER
+        <span [hidden]="reverse"> <i class="fa fa-angle-down"></i> </span
+        ><span [hidden]="!reverse"> <i class="fa fa-angle-up"></i> </span>
       </th>
-      <th class="center" (click)="setOrder('workerCount')">
+      <th
+        class="center"
+        [class.active]="order === 'workerCount'"
+        (click)="setOrder('workerCount')"
+      >
         WORKER <br />
-        &nbsp;
+        &nbsp; <span [hidden]="reverse"><i class="fa fa-angle-down"></i></span
+        ><span [hidden]="!reverse"><i class="fa fa-angle-up"></i></span>
       </th>
-      <th>
+      <th
+        [class.active]="order === '!complianceStats.Total'"
+        (click)="setOrder('!complianceStats.Total')"
+      >
         COMPLIANCE <br />
-        SCORE
+        SCORE <span [hidden]="reverse"><i class="fa fa-angle-down"></i></span
+        ><span [hidden]="!reverse"><i class="fa fa-angle-up"></i></span>
       </th>
-      <th class="right" style="width: 150px">
+      <th
+        [class.active]="order === 'grossPayTotal'"
+        class="right"
+        style="width: 150px"
+        (click)="setOrder('grossPayTotal')"
+      >
         GROSS <br />
-        PAY ()
+        PAY (£) <span [hidden]="reverse"><i class="fa fa-angle-down"></i></span
+        ><span [hidden]="!reverse"><i class="fa fa-angle-up"></i></span>
       </th>
-      <th class="right" style="width: 100px">
+      <th
+        [class.active]="order === 'payrollAdminTotal'"
+        class="right"
+        style="width: 100px"
+        (click)="setOrder('payrollAdminTotal')"
+      >
         PAYROLL <br />
-        ADMIN()
+        ADMIN(£) <span [hidden]="reverse"><i class="fa fa-angle-down"></i></span
+        ><span [hidden]="!reverse"><i class="fa fa-angle-up"></i></span>
       </th>
-      <th class="right pr-20" style="width: 150px">
+      <th
+        [class.active]="order === 'labourCostTotal'"
+        class="right pr-20"
+        style="width: 150px"
+        (click)="setOrder('labourCostTotal')"
+      >
         LABOUR <br />
-        COST ()
+        COST (£) <span [hidden]="reverse"><i class="fa fa-angle-down"></i></span
+        ><span [hidden]="!reverse"><i class="fa fa-angle-up"></i></span>
       </th>
-      <th class="center">WORK-<br />FOCE</th>
+      <th
+        [class.active]="order === 'workerCount'"
+        (click)="setOrder('workerCount')"
+        class="center"
+      >
+        WORK-<br />FOCE
+        <span [hidden]="reverse"><i class="fa fa-angle-down"></i></span
+        ><span [hidden]="!reverse"><i class="fa fa-angle-up"></i></span>
+      </th>
     </tr>
   </thead>
   <tbody *ngIf="contractor">
@@ -70,7 +107,7 @@
         class="bold rightBorder"
         *ngIf="provider?.complianceStats?.Total; else elseComplianceStats"
       >
-        {{ provider.complianceStats!.Total | number: "1.0-0" }}%
+        {{ provider.complianceStats.Total | number: "1.0-0" }}%
       </td>
       <ng-template #elseComplianceStats>
         <td class="bold rightBorder">0%</td>
